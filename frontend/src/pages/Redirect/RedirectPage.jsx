@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const RedirectPage = () => {
-  const { setAuthUser } = useAuthContext();
+  const { authUser,setAuthUser } = useAuthContext();
   const navigate = useNavigate();
   useEffect(() => {
     const fetchMe = async () => {
@@ -21,7 +21,7 @@ const RedirectPage = () => {
       }
     };
     fetchMe();
-  }, []);
+  }, [authUser]);
 
   return <div className="spinner"></div>;
 };
