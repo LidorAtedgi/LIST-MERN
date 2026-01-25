@@ -86,12 +86,11 @@ export const getMe = (req, res) => {
   }
 };
 
-export const googleCallback = (req,res) => {
-    try {
-          generateTokenAndSetCookie(req.user._id, res);
-          res.redirect("http://localhost:3000/auth/redirect");
-    } catch (error) {
-          res.redirect("http://localhost:3000/login")
-    }
-    
+export const googleCallback = (req, res) => {
+  try {
+    generateTokenAndSetCookie(req.user._id, res);
+    res.redirect(`${process.env.CLIENT_URL}/auth/redirect`);
+  } catch (error) {
+    res.redirect(`${process.env.CLIENT_URL}/login`);
+  }
 };
