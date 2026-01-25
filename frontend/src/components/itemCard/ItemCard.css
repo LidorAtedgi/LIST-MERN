@@ -1,0 +1,258 @@
+/* Container */
+.contain {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: -10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: relative;
+  width: 100%; 
+  box-sizing: border-box; 
+}
+
+.contain:last-child {
+  margin-bottom: 0; 
+}
+
+.contain:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #d1d5db;
+}
+
+/* Item name */
+.item-name {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1f2937;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Checkbox */
+.item-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #3498db;
+  flex-shrink: 0;
+}
+
+/* Quantity Controls */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.qty-button {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: #6b7280;
+  transition: all 0.2s ease;
+  line-height: 1;
+  padding: 0;
+}
+
+.qty-button:hover {
+  background: #3498db;
+  border-color: #3498db;
+  color: white;
+  transform: scale(1.05);
+}
+
+.qty-button:active {
+  transform: scale(0.95);
+}
+
+.qty-display {
+  min-width: 24px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  user-select: none;
+}
+
+/* Spinner */
+.spinner {
+  width: 20px;
+  aspect-ratio: 1 / 1;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  animation: spin 0.5s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Menu Container */
+.menu-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Three dots button */
+.menu-button {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: transparent;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.menu-button:hover {
+  background-color: #f3f4f6;
+}
+
+.menu-button span {
+  width: 4px;
+  height: 4px;
+  background-color: #6b7280;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.menu-button:hover span {
+  background-color: #374151;
+}
+
+/* Dropdown Menu - נפתח משמאל */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  min-width: 160px;
+  overflow: hidden;
+  z-index: 1000;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Menu Items */
+.menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: none;
+  background: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: right;
+  direction: rtl;
+}
+
+.menu-item:hover {
+  background-color: #f9fafb;
+}
+
+.menu-item:not(:last-child) {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.menu-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* Update button style */
+.menu-item.update {
+  color: #2563eb;
+}
+
+.menu-item.update:hover {
+  background-color: #eff6ff;
+}
+
+/* Delete button style */
+.menu-item.delete {
+  color: #dc2626;
+}
+
+.menu-item.delete:hover {
+  background-color: #fef2f2;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .contain {
+    gap: 12px;
+    padding: 12px 16px;
+  }
+  
+  .item-name {
+    font-size: 14px;
+  }
+
+  .dropdown-menu {
+    min-width: 140px;
+  }
+
+  .menu-item {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+  
+  .quantity-controls {
+    gap: 6px;
+    padding: 3px;
+  }
+  
+  .qty-button {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+  
+  .qty-display {
+    font-size: 13px;
+    min-width: 20px;
+  }
+}
