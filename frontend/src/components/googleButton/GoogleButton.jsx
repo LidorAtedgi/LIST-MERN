@@ -3,7 +3,7 @@ import "./GoogleButton.css";
 
 const GoogleButton = () => {
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:8000/api/auth/google";
+    window.location.href = "https://list-mern-ppx8.onrender.com/api/auth/google";
   };
 
   return (
