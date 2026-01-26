@@ -82,7 +82,9 @@ export const deleteList = async (req,res) => {
 
         if(!listId) return res.status(400).json({error:"Invaild ID"});
         if(!mongoose.Types.ObjectId.isValid(listId)) return res.status(400).json({ error: "Invalid ID format" });
-
+        const ownerList = await List.findOne( {_id: listId, owner: req.user._id  });
+        if (!ownerList) return res.status(403).json({ error: "Only owner can delete list name" });
+      
         await List.findByIdAndDelete(listId);
 
         res.status(200).json({message:"List deleted succsessfully!"})
