@@ -4,13 +4,14 @@ import useNonParticipants from "../../../hooks/useNonParticipants";
 import useParticipants from "../../../hooks/useParticipants";
 import useAddParticipant from "../../../hooks/useAddParticipant";
 import useRemoveParticipant from "../../../hooks/useRemoveParticipant";
+import { useAuthContext } from "../../../context/AuthContext";
 
 const ParticipantsModal = ({ listId, onClose }) => {
   const { participants, refetch: refetchParticipants } = useParticipants(listId);
   const { users: nonParticipants, refetch: refetchNon } = useNonParticipants(listId);
   const { addParticipant, loading: adding } = useAddParticipant();
   const { removeParticipant, loading: removing } = useRemoveParticipant();
-
+  const {authUser} = useAuthContext();
   const [searchTerm, setSearchTerm] = useState("");
 
 
@@ -58,7 +59,7 @@ const ParticipantsModal = ({ listId, onClose }) => {
           <ul className="user-list">
             {filteredUsers.map(user => (
               <li key={user._id}>
-                {user.username}
+                {user._id === authUser._id ? "YOU" : user.username}
                 {user.inList ? (
                   <button
                     className="remove-btn"
