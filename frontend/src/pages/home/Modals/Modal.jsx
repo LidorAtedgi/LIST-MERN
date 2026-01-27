@@ -7,13 +7,13 @@ function Modal({ onClose, setItems, mode,item ,listId}) {
 const [name, setName] = useState(item?.name || "");
 
   const { create, loading: loadingCreate } = useCreate(setItems);
-  const { update, loading: loadingUpdate } = useUpdate(setItems);
+  const { updateItem, loading: loadingUpdate } = useUpdate(setItems);
 
  const handleSubmit = async () => {
     if (mode === "create") {
       await create(listId,name);
     } else {
-      await update(listId,item._id,name);
+      await updateItem(listId,item._id,name);
     }
     onClose();
   };
