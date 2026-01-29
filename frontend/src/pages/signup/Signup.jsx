@@ -54,6 +54,9 @@ function Signup() {
                     </div>
 
                     <Link to='/login' className="signup-link">Already have an account?</Link>
+                     <a href="/privacy-policy" target="_blank" rel="noreferrer">
+                      Privacy Policy
+                     </a>
 
                     <button className="signup-btn" disabled={loading}>
                         {loading ? <div className='spinner'></div> : "Sign Up"}
