@@ -9,19 +9,20 @@
 
 html {
   height: 100%;
-  overflow: hidden;
+  /* הסרתי overflow: hidden */
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh; /* שינוי מ-height ל-min-height */
   background: radial-gradient(circle at top left, #6a00ff, #12002f);
+  background-attachment: fixed; /* שומר על הרקע קבוע בזמן גלילה */
   color: #000000;
 }
 
 /* Main app container */
 #root {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh; /* שינוי מ-height ל-min-height */
+  /* הסרתי overflow: hidden */
 }
 
 .spinner {
