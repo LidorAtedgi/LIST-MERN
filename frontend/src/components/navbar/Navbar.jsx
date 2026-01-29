@@ -3,6 +3,7 @@ import './Navbar.css';
 import LogoutButton from './LogoutButton';
 import { useAuthContext } from '../../context/AuthContext';
 import useDeleteUser from '../../hooks/useDeleteUser';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   const { authUser } = useAuthContext();
@@ -20,7 +21,9 @@ function Navbar() {
     <nav className='navbar'>
       <div className='navbar-container'>
         <div className='navbar-left'>
-          <h1 className='navbar-logo'>📝 Todo list</h1>
+          <Link to="/" className='navbar-logo-link'>
+            <h1 className='navbar-logo'>📝 Todo list</h1>
+          </Link>
           <a href="/privacy-policy" target="_blank" rel="noreferrer">
             Privacy Policy
           </a>
