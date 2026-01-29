@@ -103,11 +103,7 @@ export const deleteMe = async (req, res) => {
 
     await User.findByIdAndDelete(userId);
 
-    res.clearCookie("jwt", {
-      httpOnly: true,
-      sameSite: "strict",
-      secure: process.env.NODE_ENV === "production",
-    });
+     res.cookie("jwt","",{maxAge: 0});
 
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
