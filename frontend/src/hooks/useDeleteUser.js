@@ -18,7 +18,6 @@ const useDeleteUser = () => {
     try {
       await axios.delete("/api/users/me");
 
-      localStorage.removeItem("authUser");
       setAuthUser(null);
       navigate("/login");
     } catch (error) {
