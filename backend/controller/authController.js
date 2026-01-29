@@ -94,3 +94,24 @@ export const googleCallback = (req, res) => {
     res.redirect(`${process.env.CLIENT_URL}/login`);
   }
 };
+
+
+
+export const deleteMe = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    await User.findByIdAndDelete(userId);
+
+    res.clearCookie("jwt", {
+      httpOnly: true,
+      sameSite: "strict",
+      secure: process.env.NODE_ENV === "production",
+    });
+
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.log("Error in deleteMe controller", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
