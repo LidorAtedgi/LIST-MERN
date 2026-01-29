@@ -16,7 +16,7 @@ const useDeleteUser = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete("/api/users/me");
+      await axios.delete("/api/auth/me", { withCredentials: true });
 
       setAuthUser(null);
       navigate("/login");
