@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import { useAuthContext } from './context/AuthContext';
 import Navbar from './components/navbar/Navbar';
 import RedirectPage from './pages/Redirect/RedirectPage';
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
   const { authUser, loadingUser } = useAuthContext();
@@ -21,6 +22,7 @@ function App() {
         <Route path='/login' element={authUser ? <Navigate to="/" replace /> : <Login />} />
         <Route path='/signup' element={authUser ? <Navigate to="/" replace /> : <Signup />} />
          <Route path='/auth/redirect' element={<RedirectPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
       <Toaster />
     </>
