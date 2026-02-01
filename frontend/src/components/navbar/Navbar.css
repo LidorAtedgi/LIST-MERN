@@ -7,23 +7,9 @@
   top: 0;
   z-index: 1000;
 }
-.delete-user-btn {
-  background: transparent;
-  border: 1px solid #ff4d4d;
-  color: #ff4d4d;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.delete-user-btn:hover {
-  background: #ff4d4d;
-  color: white;
-}
 
 .navbar-container {
-  width: 100%; /* שינוי מ-max-width */
+  width: 100%;
   padding: 16px 24px;
   display: flex;
   justify-content: space-between;
@@ -34,6 +20,11 @@
 .navbar-left {
   display: flex;
   align-items: center;
+}
+
+.navbar-logo-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .navbar-logo {
@@ -49,13 +40,15 @@
   transform: scale(1.05);
 }
 
-/* Right side - User & Logout */
+/* Right side */
 .navbar-right {
   display: flex;
   align-items: center;
   gap: 16px;
+  position: relative;
 }
 
+/* Username */
 .navbar-username {
   color: white;
   font-size: 15px;
@@ -65,10 +58,11 @@
   border-radius: 20px;
   backdrop-filter: blur(10px);
   white-space: nowrap;
+  text-align: center;
 }
-/* Hamburger Menu Button - מוסתר בדסקטופ */
+
+/* Hamburger Menu Button */
 .menu-toggle {
-  display: none;
   background: none;
   border: none;
   cursor: pointer;
@@ -76,64 +70,123 @@
   color: white;
   font-size: 28px;
   line-height: 1;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .hamburger-icon {
   display: block;
 }
 
+/* Menu Items Container */
 .menu-items {
   display: flex;
-  align-items: center;
-  gap: 15px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  width: 220px;
+  background: rgba(30, 10, 60, 0.97);
+  backdrop-filter: blur(14px);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-items.open {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* Menu Buttons - unified style */
+.menu-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: right;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.07);
+  color: white;
+}
+
+.menu-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* Policy Button */
+.menu-btn-policy {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #c8b8ff;
+}
+
+.menu-btn-policy:hover {
+  background: rgba(200, 184, 255, 0.15);
+  color: #fff;
+}
+
+/* Delete Button */
+.menu-btn-delete {
+  border-color: rgba(255, 77, 77, 0.3);
+  color: #ff6b6b;
+}
+
+.menu-btn-delete:hover {
+  background: rgba(255, 77, 77, 0.2);
+  color: #ff4d4d;
+}
+
+/* LogoutButton wrapper - to match style */
+.menu-btn-wrapper {
+  width: 100%;
+}
+
+.menu-btn-wrapper button {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: right;
+  background: rgba(255, 255, 255, 0.07);
+  color: #7fff7f;
+  border: 1px solid rgba(127, 255, 127, 0.3);
+  transition: all 0.2s ease;
+}
+
+.menu-btn-wrapper button:hover {
+  background: rgba(127, 255, 127, 0.15);
+  color: #fff;
 }
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-  .navbar-container {
-    position: relative;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
   .menu-items {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: rgba(18, 0, 47, 0.98);
-    backdrop-filter: blur(10px);
-    flex-direction: column;
-    align-items: stretch;
-    padding: 15px;
-    gap: 10px;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  }
-
-  .menu-items.open {
-    max-height: 500px;
-    opacity: 1;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .navbar-username {
-    padding: 10px;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .delete-user-btn,
-  .menu-items button {
-    width: 100%;
-    justify-content: center;
+    right: -10px;
+    width: 230px;
   }
 }
+
 /* Responsive */
 @media (max-width: 640px) {
   .navbar-container {
@@ -144,12 +197,8 @@
     font-size: 20px;
   }
 
-  .navbar-username {
-    font-size: 13px;
-    padding: 6px 12px;
-  }
-
-  .navbar-right {
-    gap: 10px;
+  .menu-items {
+    right: -10px;
+    width: 210px;
   }
 }
