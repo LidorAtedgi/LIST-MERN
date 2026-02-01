@@ -5,7 +5,6 @@ import useParticipants from "../../../hooks/useParticipants";
 import useAddParticipant from "../../../hooks/useAddParticipant";
 import useRemoveParticipant from "../../../hooks/useRemoveParticipant";
 import { useAuthContext } from "../../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 const ParticipantsModal = ({ listId, onClose }) => {
   const { participants, refetch: refetchParticipants } = useParticipants(listId);
@@ -13,7 +12,6 @@ const ParticipantsModal = ({ listId, onClose }) => {
   const { addParticipant, loading: adding } = useAddParticipant();
   const { removeParticipant, loading: removing } = useRemoveParticipant();
   const { authUser } = useAuthContext();
-  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
   const allUsers = [
@@ -36,7 +34,7 @@ const ParticipantsModal = ({ listId, onClose }) => {
   const handleRemove = async (userId) => {
     await removeParticipant(listId, userId);
     if (userId === authUser._id) {
-      navigate("/");
+      window.location.reload();
       return;
     }
     refetchParticipants();
