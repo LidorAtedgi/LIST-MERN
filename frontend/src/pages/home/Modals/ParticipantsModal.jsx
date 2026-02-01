@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./ParticipantsModal.css";
 import useNonParticipants from "../../../hooks/useNonParticipants";
 import useParticipants from "../../../hooks/useParticipants";
 import useAddParticipant from "../../../hooks/useAddParticipant";
 import useRemoveParticipant from "../../../hooks/useRemoveParticipant";
 import { useAuthContext } from "../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const ParticipantsModal = ({ listId, onClose }) => {
   const { participants, refetch: refetchParticipants } = useParticipants(listId);
   const { users: nonParticipants, refetch: refetchNon } = useNonParticipants(listId);
   const { addParticipant, loading: adding } = useAddParticipant();
   const { removeParticipant, loading: removing } = useRemoveParticipant();
-  const {authUser} = useAuthContext();
+  const { authUser } = useAuthContext();
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-
 
   const allUsers = [
     ...participants.map(u => ({ ...u, inList: true })),
@@ -34,6 +35,10 @@ const ParticipantsModal = ({ listId, onClose }) => {
 
   const handleRemove = async (userId) => {
     await removeParticipant(listId, userId);
+    if (userId === authUser._id) {
+      navigate("/");
+      return;
+    }
     refetchParticipants();
     refetchNon();
   };
@@ -45,7 +50,6 @@ const ParticipantsModal = ({ listId, onClose }) => {
           <h3>Manage Participants</h3>
           <button className="close-btn" onClick={onClose}>×</button>
         </div>
-
         <div className="modal-search">
           <input
             type="text"
@@ -54,7 +58,6 @@ const ParticipantsModal = ({ listId, onClose }) => {
             onChange={e => setSearchTerm(e.target.value)}
           />
         </div>
-
         <div className="modal-content">
           <ul className="user-list">
             {filteredUsers.map(user => (
