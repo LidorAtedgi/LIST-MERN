@@ -15,6 +15,7 @@ const [name, setName] = useState(item?.name || "");
     } else {
       await updateItem(listId,item._id,name);
     }
+    setName("");
     onClose();
   };
 
