@@ -144,7 +144,6 @@ function Home() {
             item={selectedItem}
             mode={selectedItem ? "update" : "create"}
             onClose={() => {
-              setShowModal(false);
               setSelectedItem(null);
             }}
           />
